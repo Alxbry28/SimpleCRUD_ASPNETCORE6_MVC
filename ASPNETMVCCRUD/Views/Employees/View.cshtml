@@ -1,0 +1,46 @@
+﻿@model ASPNETMVCCRUD.Models.UpdateEmployeeViewModel
+@*@model ASPNETMVCCRUD.Models.Domain.Employee*@
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Edit Employee";
+}
+
+
+<h1>Add Employee</h1>
+<form method="post" action="/Employees/Edit" class="mt-5">
+    <div class="mb-3">
+        <label for="Id" class="form-label">Id</label>
+        <input asp-for="Id" type="text" class="form-control" id="Id" aria-describedby="Id" readonly>
+
+    </div>
+    <div class="mb-3">
+        <label for="name" class="form-label">Name</label>
+        <input asp-for="Name" type="text" class="form-control" id="name" aria-describedby="name">
+
+    </div>
+    <div class="mb-3">
+        <label for="email" class="form-label">Email address</label>
+        <input asp-for="Email" type="email" class="form-control" id="email" aria-describedby="email">
+
+    </div>
+    <div class="mb-3">
+        <label for="salary" class="form-label">Salary</label>
+        <input asp-for="Salary" type="number" class="form-control" id="salary">
+    </div>
+    <div class="mb-3">
+        <label for="birthday" class="form-label">Birthday</label>
+        <input asp-for="Birthday" type="date" class="form-control" id="birthday">
+    </div>
+    <div class="mb-3">
+        <label for="department" class="form-label">Department</label>
+        <input asp-for="Department" type="text" class="form-control" id="department">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-danger"
+            asp-action="Delete"
+            asp-controller="Employees">
+        Delete
+    </button>
+</form>
