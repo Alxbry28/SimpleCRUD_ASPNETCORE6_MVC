@@ -1,0 +1,2 @@
+# SimpleCRUD_ASPNETCORE6_MVC
+Practice ASP .NET CORE 6 MVC
