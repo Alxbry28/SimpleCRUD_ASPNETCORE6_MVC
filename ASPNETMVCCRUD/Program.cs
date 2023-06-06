@@ -30,4 +30,20 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapAreaControllerRoute(
+      name: "student_route",
+      areaName: "Students",
+      pattern: "Student/{controller=Home}/{action=Index}/{id?}"
+    ); 
+    
+    endpoints.MapAreaControllerRoute(
+      name: "admin_route",
+      areaName: "Admin",
+      pattern: "Admin/{controller=Home}/{action=Index}/{id?}"
+    );
+
+});
+
 app.Run();
