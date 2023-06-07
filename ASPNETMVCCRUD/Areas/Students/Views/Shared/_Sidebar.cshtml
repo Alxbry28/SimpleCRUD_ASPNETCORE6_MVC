@@ -40,11 +40,10 @@
 						</div>
 					</div>
 					<ul class="nav">
-						<li class="nav-item active">
-							<a href="index.html">
+						<li class="nav-item">
+							<a asp-area="Students" asp-controller="Home" asp-action="Index">
 								<i class="fas fa-home"></i>
 								<p>Dashboard</p>
-								<span class="badge badge-count">5</span>
 							</a>
 						</li>
 						<li class="nav-section">
@@ -56,13 +55,13 @@
 				
 				
 					<li class="nav-item">
-							<a href="/Students">
+							<a asp-area="Students" asp-controller="Home" asp-action="Index">
 								<i class="fas fa-desktop"></i>
 								<p>Students</p>
 							</a>
 						</li>
 						<li class="nav-item">
-							<a href="/Students/Create">
+							<a asp-area="Students" asp-controller="Home" asp-action="Create" >
 								<i class="fas fa-desktop"></i>
 								<p>Create Student</p>
 							</a>

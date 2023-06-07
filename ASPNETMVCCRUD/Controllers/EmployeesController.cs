@@ -49,7 +49,7 @@ namespace ASPNETMVCCRUD.Controllers
         [HttpGet]
         public async Task<IActionResult> View(Guid id)
         {
-            Employee employee = await mVCDemoDbContext.Employees.FirstOrDefaultAsync(emp => emp.Id.Equals(id));
+            Employee? employee = await mVCDemoDbContext.Employees.FirstOrDefaultAsync(emp => emp.Id.Equals(id));
             if (employee == null)
             {
                 //return NotFound();
