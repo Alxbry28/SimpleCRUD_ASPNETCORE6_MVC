@@ -8,7 +8,14 @@ namespace ASPNETMVCCRUD.Areas.Students.Controllers
         public IActionResult Index()
         {
             return View();
-            //return Content("Students Area");
+   
         }
+
+        public IActionResult Create()
+        {
+            return View();
+           
+        }
+
     }
 }
