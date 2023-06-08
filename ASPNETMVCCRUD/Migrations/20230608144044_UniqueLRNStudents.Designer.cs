@@ -4,6 +4,7 @@ using ASPNETMVCCRUD.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ASPNETMVCCRUD.Migrations
 {
     [DbContext(typeof(MVCDemoDbContext))]
-    partial class MVCDemoDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230608144044_UniqueLRNStudents")]
+    partial class UniqueLRNStudents
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
