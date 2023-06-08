@@ -1,4 +1,7 @@
-﻿@{
+﻿@using ASPNETMVCCRUD.Areas.Students.ViewModels
+@using ASPNETMVCCRUD.Areas.Students.Models
+@model IndexRecordViewModel
+@{
     ViewData["Title"] = "Student Page";
 }
 
@@ -6,11 +9,7 @@
     <div class="page-inner">
         <div class="page-header">
             <h4 class="page-title">Students</h4>
-            @ViewContext.RouteData.Values["Area"].ToString()
-            @ViewContext.RouteData.Values["Controller"].ToString()
-            @ViewContext.RouteData.Values["Action"].ToString()
-        
-      
+
             <ul class="breadcrumbs">
                 <li class="nav-home">
                     <a href="/">
@@ -46,54 +45,36 @@
                                         <th>Birthday</th>
                                         <th>Address</th>
                                         <th>UpdateAt</th>
+                                        <th>Actions</th>
                                     </tr>
                                 </thead>
 
                                 <tbody>
-                                    <tr>
-                                        <td>283456789012</td>
-                                        <td>Alex Bryan</td>
-                                        <td>Quilala</td>
-                                        <td>Arellano</td>
-                                        <td>12</td>
-                                        <td>ICTE201P</td>
-                                        <td>11/28/1998</td>
-                                        <td>San Mateo, Rizal</td>
-                                        <td>06/08/2023</td>
-                                    </tr>
-                                    <tr>
-                                        <td>223456789015</td>
-                                        <td>Mark</td>
-                                        <td>Ayala</td>
-                                        <td>Cruz</td>
-                                        <td>11</td>
-                                        <td>ICTE101P</td>
-                                        <td>10/28/1998</td>
-                                        <td>San Mateo, Rizal</td>
-                                        <td>06/08/2023</td>
-                                    </tr>
-                                    <tr>
-                                        <td>123456789012</td>
-                                        <td>Juan</td>
-                                        <td>Cruz</td>
-                                        <td>Del Rosario</td>
-                                        <td>12</td>
-                                        <td>ICTE201P</td>
-                                        <td>12/25/1998</td>
-                                        <td>Manila</td>
-                                        <td>06/08/2023</td>
-                                    </tr>
-                                    <tr>
-                                        <td>423456549012</td>
-                                        <td>John</td>
-                                        <td>English</td>
-                                        <td>Doe</td>
-                                        <td>11</td>
-                                        <td>ICTE101P</td>
-                                        <td>09/28/1998</td>
-                                        <td>Marikina</td>
-                                        <td>06/08/2023</td>
-                                    </tr>
+                                    @foreach(Student student in Model.Students)
+                                    {
+                                        <tr>
+                                            <td>@student.LRN</td>
+                                            <td>@student.FirstName</td>
+                                            <td>@student.MiddleName</td>
+                                            <td>@student.LastName</td>
+                                            <td>@student.Grade.ToString()</td>
+                                            <td>@student.Section</td>
+                                            <td>@student.Birthday.ToString("MM/dd/yyyy")</td>
+                                            <td>@student.Address</td>
+                                            <td>@student.UpdatedAt.ToString("MM/dd/yyyy")</td>
+                                            <td>
+                                                <div class="form-button-action">
+                                                    <a href="@Url.Action("ViewRecord","Record", new{id = student.Id})" data-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Edit Record">
+                                                        <i class="fa fa-edit"></i>
+                                                    </a>
+                                                    <a href="@Url.Action("Delete","Record", new{id = student.Id})" data-toggle="tooltip" title="" class="btn btn-link btn-danger" data-original-title="Remove">
+                                                        <i class="fa fa-times"></i>
+                                                    </a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    }
+                               
                                 </tbody>
                             </table>
                         </div>
@@ -113,6 +94,7 @@
 <script>
     $(document).ready(function () {
         $('#basic-datatables').DataTable({
+            responsive: true
         });
 
         $('#multi-filter-select').DataTable({

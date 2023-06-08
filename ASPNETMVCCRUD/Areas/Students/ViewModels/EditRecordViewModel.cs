@@ -5,6 +5,8 @@ namespace ASPNETMVCCRUD.Areas.Students.ViewModels
 {
     public class EditRecordViewModel
     {
+        public Guid Id { get; set; }
+
         [Required(ErrorMessage = "LRN is required")]
         public string LRN { get; set; }
 
