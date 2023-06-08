@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using ASPNETMVCCRUD.Areas.Students.Data.Enum;
+using System.ComponentModel.DataAnnotations;
 
 namespace ASPNETMVCCRUD.Areas.Students.Models
 {
@@ -10,7 +11,7 @@ namespace ASPNETMVCCRUD.Areas.Students.Models
 		public string FirstName { get; set; }
 		public string MiddleName { get; set; }
 		public string LastName { get; set; }
-		public string Grade { get; set; }
+		public GradesEnum Grade { get; set; }
 		public string Section { get; set; }
 		public string Address { get; set; }
 		public DateTime Birthday { get; set; }

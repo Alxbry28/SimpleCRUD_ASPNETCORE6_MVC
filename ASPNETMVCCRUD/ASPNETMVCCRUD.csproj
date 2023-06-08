@@ -7,10 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Areas\Students\NewFolder\**" />
-    <Content Remove="Areas\Students\NewFolder\**" />
-    <EmbeddedResource Remove="Areas\Students\NewFolder\**" />
-    <None Remove="Areas\Students\NewFolder\**" />
+    <Compile Remove="ViewModels\**" />
+    <Content Remove="ViewModels\**" />
+    <EmbeddedResource Remove="ViewModels\**" />
+    <None Remove="ViewModels\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -25,9 +25,6 @@
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Admin\Models\" />
-    <Folder Include="Areas\Students\Data\" />
-    <Folder Include="Areas\Students\ViewModels\" />
-    <Folder Include="ViewModels\" />
   </ItemGroup>
 
 </Project>
