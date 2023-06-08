@@ -12,9 +12,14 @@ namespace ASPNETMVCCRUD.Areas.Students.Controllers
         {
             _studentRepository = studentRepository;
         }
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            IndexRecordViewModel indexRecordViewModel = new IndexRecordViewModel()
+            {
+                Students = await _studentRepository.GetAll()
+            };
+          
+            return View(indexRecordViewModel);
         }
 
         public IActionResult Create()
@@ -22,6 +27,13 @@ namespace ASPNETMVCCRUD.Areas.Students.Controllers
             return View();
 
         }
+
+        public async Task<IActionResult> ViewRecord(Guid id)
+        {
+            Student? student = await _studentRepository.GetByGuidAsync(id);
+            return View(student);
+        }
+
 
         [HttpPost]
         public IActionResult AddRecord(CreateRecordViewModel newRecord)
