@@ -16,6 +16,7 @@ namespace ASPNETMVCCRUD.Areas.Students.ViewModels
         [Required(ErrorMessage = "LastName is required")]
         public string LastName { get; set; }
 
+        [Required(ErrorMessage = "Grade is required")]
         public GradesEnum Grade { get; set; }
 
         [Required(ErrorMessage = "Section is required")]

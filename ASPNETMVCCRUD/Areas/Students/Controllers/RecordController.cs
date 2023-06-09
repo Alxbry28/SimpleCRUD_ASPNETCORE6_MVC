@@ -18,7 +18,7 @@ namespace ASPNETMVCCRUD.Areas.Students.Controllers
             {
                 Students = await _studentRepository.GetAll()
             };
-          
+
             return View(indexRecordViewModel);
         }
 
@@ -43,7 +43,7 @@ namespace ASPNETMVCCRUD.Areas.Students.Controllers
                 Address = student.Address,
                 Birthday = student.Birthday,
             };
-           
+
             return View(editRecordViewModel);
         }
 
@@ -55,9 +55,17 @@ namespace ASPNETMVCCRUD.Areas.Students.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddRecord(CreateRecordViewModel newRecord)
+        public async Task<IActionResult> AddRecord(CreateRecordViewModel newRecord)
         {
-            if (!ModelState.IsValid) return Content("Invalid");
+            if (!ModelState.IsValid) return View("Create", newRecord);
+
+            Student? existStudent = await _studentRepository.GetByLRNAsync(newRecord.LRN);
+            if (existStudent != null)
+            {
+                ModelState.AddModelError(nameof(newRecord.LRN), "LRN is already exist in the database");
+                return View("Create", newRecord);
+            }
+             
 
             Student newStudent = new Student()
             {
@@ -74,10 +82,10 @@ namespace ASPNETMVCCRUD.Areas.Students.Controllers
                 UpdatedAt = DateTime.Now,
             };
 
-            if(_studentRepository.Update(newStudent)) return RedirectToAction("Index");
+            if (_studentRepository.Create(newStudent)) return RedirectToAction("Index");
             return Content("Failed");
 
-        } 
+        }
 
         [HttpPost]
         public IActionResult EditRecord(EditRecordViewModel newRecord)
@@ -98,7 +106,7 @@ namespace ASPNETMVCCRUD.Areas.Students.Controllers
                 UpdatedAt = DateTime.Now,
             };
 
-            if(_studentRepository.Create(newStudent)) return RedirectToAction("Index");
+            if (_studentRepository.Update(newStudent)) return RedirectToAction("Index");
             return Content("Failed");
 
         }

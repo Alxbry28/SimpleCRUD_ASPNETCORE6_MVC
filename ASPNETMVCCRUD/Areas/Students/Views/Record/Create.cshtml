@@ -1,9 +1,9 @@
 ﻿@using ASPNETMVCCRUD.Areas.Students.Data.Enum
 @using ASPNETMVCCRUD.Areas.Students.ViewModels
-@model EditRecordViewModel
+@model CreateRecordViewModel
 
 @{
-    ViewData["Title"] = "View Record/Edit Student Page";
+    ViewData["Title"] = "Create Student Page";
 }
 
 <div class="content">
@@ -36,14 +36,14 @@
                     <div class="card-header">
                         <div class="card-title">Create student record</div>
                     </div>
-                    <form method="post" asp-action="EditRecord" asp-area="Students" asp-controller="Record"
+                    <form method="post" asp-action="AddRecord" asp-area="Students" asp-controller="Record"
                         enctype="multipart/form-data">
-
 
                         <div class="card-body">
                             <div class="form-group">
                                 <label for="LRN">LRN</label>
                                 <input type="text" class="form-control" asp-for="LRN" id="LRN" placeholder="Enter LRN">
+                                <span asp-validation-for="LRN" class="text-danger"></span>
                             </div>
 
                             <div class="form-group">
@@ -74,6 +74,7 @@
                                     class="form-control">
                                     <option>--Select Grades--</option>
                                 </select>
+                                 <span asp-validation-for="Grade" class="text-danger"></span>
                             </div>
 
 

@@ -1,6 +1,7 @@
 using ASPNETMVCCRUD.Areas.Students.Models;
 using ASPNETMVCCRUD.Data;
 using Microsoft.EntityFrameworkCore;
+using System;
 
 public class StudentRepository : IStudentRepository
 {
@@ -36,7 +37,12 @@ public class StudentRepository : IStudentRepository
 		return await _context.Students.AsNoTracking().FirstOrDefaultAsync(student => student.Id == guid);
 	}
 
-	public bool Save()
+    public async Task<Student?> GetByLRNAsync(string lrn)
+    {
+        return await _context.Students.FirstOrDefaultAsync(student => student.LRN == lrn);
+    }
+
+    public bool Save()
 	{
 		int saved = _context.SaveChanges();
 		return saved > 0;
