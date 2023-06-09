@@ -107,7 +107,7 @@ namespace ASPNETMVCCRUD.Controllers
         [HttpGet]
         public async Task<IActionResult> Delete(Guid id)
         {
-            Employee existEmployee = await mVCDemoDbContext.Employees.FindAsync(id);
+            Employee? existEmployee = await mVCDemoDbContext.Employees.FindAsync(id);
             if (existEmployee != null)
             {
                 mVCDemoDbContext.Employees.Remove(existEmployee);
