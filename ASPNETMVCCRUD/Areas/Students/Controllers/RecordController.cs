@@ -63,7 +63,7 @@ namespace ASPNETMVCCRUD.Areas.Students.Controllers
             if (existStudent != null)
             {
                 ModelState.AddModelError(nameof(newRecord.LRN), "LRN is already exist in the database");
-                return View("Create", newRecord);
+             return View("Create", newRecord);
             }
              
 
@@ -88,25 +88,22 @@ namespace ASPNETMVCCRUD.Areas.Students.Controllers
         }
 
         [HttpPost]
-        public IActionResult EditRecord(EditRecordViewModel newRecord)
+        public async Task<IActionResult> EditRecord(EditRecordViewModel newRecord)
         {
             if (!ModelState.IsValid) return Content("Invalid");
+            Student? existStudent = await _studentRepository.GetByLRNAsync(newRecord.LRN);
 
-            Student newStudent = new Student()
-            {
-                Id = Guid.NewGuid(),
-                LRN = newRecord.LRN,
-                FirstName = newRecord.FirstName,
-                MiddleName = newRecord.MiddleName,
-                LastName = newRecord.LastName,
-                Grade = newRecord.Grade,
-                Section = newRecord.Section,
-                Address = newRecord.Address,
-                Birthday = newRecord.Birthday,
-                UpdatedAt = DateTime.Now,
-            };
+            existStudent.FirstName = newRecord.FirstName;
+            existStudent.MiddleName = newRecord.MiddleName;
+            existStudent.LastName = newRecord.LastName;
+            existStudent.Grade = newRecord.Grade;
+            existStudent.Section = newRecord.Section;
+            existStudent.Address = newRecord.Address;
+            existStudent.Birthday = newRecord.Birthday;
+            existStudent.UpdatedAt = DateTime.Now;
 
-            if (_studentRepository.Update(newStudent)) return RedirectToAction("Index");
+
+            if (_studentRepository.Save()) return RedirectToAction("Index");
             return Content("Failed");
 
         }
